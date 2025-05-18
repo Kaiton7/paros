@@ -1,0 +1,1264 @@
+/* --- Reset & Basic --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    color: #333;
+    background-color: #f1f3f5; /* bodyの背景色を薄いグレー */
+    font-weight: 300;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Zen Old Mincho', serif;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 0.75em;
+    color: #1a1a1a;
+}
+
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+
+a {
+    color: #005f73; /* アクセントカラー */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0a9396;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #005f73;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* セクションごとの背景色設定 */
+.hero { background-color: #ffffff; }
+.about { background-color: #ffffff; }
+.features { background-color: #e9ecef; } /* Featuresは少し濃いグレー */
+.cta { background-color: #005f73; color: #ffffff; }
+footer { background-color: #1a1a1a; color: #adb5bd; }
+
+
+.accent {
+    color: #005f73;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.sp-br { display: none; }
+
+/* --- Header --- */
+header { background-color: #ffffff; padding: 15px 0; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000; width: 100%; }
+.header-container { display: flex; justify-content: space-between; align-items: center; }
+.logo h1 { margin: 0; font-size: 1.8rem; font-weight: 700; }
+.logo a { color: #1a1a1a; text-decoration: none; }
+.nav-links { list-style: none; display: flex; }
+.nav-links li { margin-left: 30px; }
+/* 変更点: ナビゲーションリンクの基本スタイル */
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 400; /* 通常時の太さ */
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent; /* 通常時は透明な下線 */
+    transition: border-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease; /* font-weightもトランジション対象に */
+}
+
+/* 変更点: ホバー時のスタイル */
+.nav-links a:hover {
+    color: #005f73;
+    border-bottom-color: #005f73; /* ホバー時に下線を表示 */
+}
+
+/* ★追加: 現在のページを示すアクティブなリンクのスタイル */
+.nav-links a.active-nav {
+    color: #005f73;
+    border-bottom-color: #005f73; /* アクティブなリンクに下線を表示 */
+    font-weight: 700; /* 例: 少し太字にする */
+}
+
+.burger { display: none; cursor: pointer; }
+.burger div { width: 25px; height: 2px; background-color: #333; margin: 5px 0; transition: all 0.3s ease; }
+/* --- Hero Section (提案1: 淡いグラデーション背景) --- */
+.hero {
+    /* padding: 100px 0; */ /* 元のpadding */
+    padding: 120px 0; /* 少し広げてゆとりを持たせる */
+    overflow: hidden;
+    /* 背景を淡いアクセントカラーから白へのグラデーションに変更 */
+    background: linear-gradient(135deg, #e0fbfc 0%, #ffffff 70%); /* 角度や色の割合はお好みで調整 */
+    /* または background: linear-gradient(to right bottom, #e0fbfc, #ffffff); */
+}
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* 少し間隔を広げる */
+}
+
+.hero-content {
+    flex: 1;
+    animation: slideInLeft 1s ease-out;
+    /* color プロパティは基本的に変更なし (黒系のまま) */
+}
+
+.hero-content h2 {
+    font-size: 3.2rem; /* 少し大きく */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2; /* 少し詰める */
+    color: #1a1a1a; /* 見出しの色を明確に */
+}
+
+.hero-content p {
+    font-size: 1.15rem; /* 少し大きく */
+    margin-bottom: 2.5rem;
+    color: #495057; /* 説明文の色を少し濃く */
+}
+
+.hero-buttons .btn {
+    margin-right: 15px;
+    margin-bottom: 10px;
+    /* ボタンデザインは基本維持 */
+}
+
+.hero-image-column {
+    flex: 1;
+    text-align: center;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-image-column img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px; /* 画像の角丸を少し大きく */
+    box-shadow: 0 15px 35px rgba(0, 95, 115, 0.15); /* 影を少し調整 */
+}
+/* --- Buttons --- */
+.btn { display: inline-block; padding: 12px 28px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; cursor: pointer; border: 2px solid transparent; text-align: center; }
+.btn-primary { background-color: #005f73; color: #fff; border-color: #005f73; }
+.btn-primary:hover { background-color: #0a9396; border-color: #0a9396; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 95, 115, 0.3); }
+.btn-outline { background-color: transparent; color: #005f73; border-color: #005f73; }
+.btn-outline:hover { background-color: rgba(0, 95, 115, 0.05); color: #005f73; }
+.btn-large { padding: 15px 40px; font-size: 1.1rem; }
+
+/* --- About Section --- */
+.about-content { display: flex; align-items: center; gap: 50px; }
+.about-text { flex: 1.2; }
+.about-text h3 { margin-bottom: 1.5rem; font-size: 2rem; }
+.about-text p { margin-bottom: 1.5rem; color: #555; }
+.about-image { flex: 1; text-align: center; }
+.about-image img { border-radius: 8px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); width: 100%; max-width: 450px; height: auto; }
+.text-link { font-weight: 700; display: inline-block; align-items: center; }
+.text-link i { margin-left: 5px; transition: transform 0.3s ease; }
+.text-link:hover i { transform: translateX(5px); }
+/* --- Features Section (Rounded Border Fade-in Effect) --- */
+.feature-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    --primary-color: #005f73; /* アクセントカラー */
+    --line-thickness: 2px;    /* 線の太さ */
+    --border-radius: 8px;     /* カードの角丸 */
+
+    background-color: #ffffff;
+    padding: 35px 30px;
+    border-radius: var(--border-radius); /* カード自体の角丸 */
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+    position: relative; /* ::before の基準位置 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    /* overflow: hidden; を設定しても良い */
+}
+
+/* 枠線を表示するための疑似要素 */
+.feature-card::before {
+    content: "";
+    position: absolute;
+    /* inset プロパティで上下左右の位置を一括指定 */
+    /* ネガティブマージンで親要素より少し外側にはみ出す */
+    inset: calc(var(--line-thickness) / -1);
+
+    /* 枠線を設定 */
+    border: var(--line-thickness) solid var(--primary-color);
+
+    /* 親要素の角丸に合わせて枠線の角丸を設定 */
+    /* 親の半径 + 線の太さ程度にすると綺麗に見えることが多い */
+    border-radius: calc(var(--border-radius) + var(--line-thickness));
+
+    opacity: 0; /* 初期状態では透明 */
+    transition: opacity 0.4s ease; /* 透明度をアニメーション */
+    z-index: 0;
+    pointer-events: none; /* クリックなどを邪魔しない */
+}
+
+.feature-card:hover::before {
+    opacity: 1; /* ホバー時に不透明にする */
+}
+
+
+/* カード内の要素が線の上に表示されるように z-index を設定 */
+.feature-icon,
+.feature-text {
+    position: relative; /* z-index を有効にするため */
+    z-index: 1;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0;
+    flex-shrink: 0;
+    width: 50px;
+    text-align: center;
+}
+
+.feature-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+}
+
+.feature-text p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* レスポンシブ対応（参考） */
+@media (max-width: 480px) {
+    .feature-card {
+        padding: 25px 20px;
+    }
+}
+/* --- CTA Section --- */
+.cta { text-align: center; padding: 60px 0; }
+.cta h2 { color: #ffffff; font-size: 2rem; margin-bottom: 1rem; }
+.cta p { margin-bottom: 2.5rem; font-size: 1.1rem; opacity: 0.9; }
+.cta .btn-primary { background-color: #ffffff; color: #005f73; border-color: #ffffff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+.cta .btn-primary:hover { background-color: #f0f0f0; color: #005f73; border-color: #f0f0f0; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); }
+
+/* --- Footer --- */
+footer { padding: 50px 0 20px; font-size: 0.9rem; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #343a40; }
+.footer-info h3 { color: #ffffff; font-size: 1.4rem; margin-bottom: 1rem; font-family: 'Zen Old Mincho', serif; }
+.footer-info p { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+.footer-info i { color: #005f73; }
+.footer-links h4 { color: #ffffff; font-size: 1.1rem; margin-bottom: 1rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 0.7rem; }
+.footer-links a { color: #adb5bd; text-decoration: none; }
+.footer-links a:hover { color: #ffffff; text-decoration: underline; }
+.footer-bottom { text-align: center; padding-top: 20px; font-size: 0.85rem; color: #6c757d; }
+
+
+/* --- Animations --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .hero-layout, .about-content { flex-direction: column; text-align: center; }
+    .hero-content { margin-bottom: 40px; order: 2; }
+    .hero-image-column { order: 1; }
+    .about-text { order: 2; margin-top: 30px; }
+    .about-image { order: 1; max-width: 80%; margin: 0 auto; }
+    .about-text h3 { font-size: 1.8rem; }
+}
+
+@media (max-width: 768px) {
+    .sp-br { display: block; }
+    h2, .section-title { font-size: 2rem; }
+    .hero-content h2 { font-size: 2.5rem; }
+    .nav-links { display: none; position: absolute; right: 0; top: 65px; background-color: #ffffff; width: 100%; flex-direction: column; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    .nav-links.nav-active { display: flex; }
+    .nav-links li { margin: 15px 0; margin-left: 0; }
+    .burger { display: block; }
+    .footer-content { flex-direction: column; align-items: center; text-align: center; }
+    .footer-info, .footer-links { width: 100%; max-width: 350px; }
+    .footer-info p { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .btn { padding: 10px 20px; font-size: 0.9rem; }
+    .btn-large { padding: 12px 30px; font-size: 1rem; }
+    .section-title { font-size: 1.8rem; }
+    .cta h2 { font-size: 1.6rem; }
+    .cta p { font-size: 1rem; }
+    .feature-card { padding: 25px 20px; }
+}
+
+
+/* ============================================= */
+/* style.css に追記・修正する内容               */
+/* ============================================= */
+
+/* --- ページ共通の調整 (必要に応じて) --- */
+/* 例: body { background-color: #f8f9fa; } など */
+
+
+/* --- Hero Section (Company Page Version) --- */
+/* 既存の .hero スタイルをベースに調整 */
+.hero {
+    padding: 100px 0; /* 少し上下のpaddingを調整 */
+    overflow: hidden;
+    /* index.html の Hero で使用した背景スタイルを適用 */
+    /* 例1: 淡いグラデーション */
+    background: linear-gradient(135deg, #e0fbfc 0%, #ffffff 70%);
+    /* 例2: 濃色背景 (その場合、以降の文字色なども調整) */
+    /* background: linear-gradient(135deg, #005f73 0%, #0a9396 100%); */
+    /* color: #ffffff; */
+}
+
+/* 会社沿革ページのHeroコンテンツは中央寄せにする */
+.hero-content {
+    text-align: center;
+    max-width: 700px; /* コンテンツ幅を制限 */
+    margin: 0 auto;   /* 中央寄せ */
+    animation: fadeIn 1s ease-out; /* アニメーション */
+}
+
+.hero-content h2 {
+    font-size: 2.8rem; /* 少しサイズ調整 */
+    margin-bottom: 0.8rem;
+    color: #1a1a1a; /* 濃色背景の場合は #ffffff */
+    font-weight: 700;
+}
+
+.hero-content h2 .accent {
+    color: #005f73; /* アクセントカラー */
+    /* 濃色背景の場合は、少し明るい色 #94d2bd などでも良い */
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #495057; /* 濃色背景の場合は #e9ecef など */
+    margin-bottom: 0;
+}
+
+
+/* --- Company Section (企業情報 & 沿革共通) --- */
+/* セクションの基本スタイル */
+section.company {
+    padding: 80px 0;
+}
+/* セクション背景を交互にする */
+section.company:nth-of-type(odd) { /* 1番目 (企業情報) */
+    background-color: #ffffff;
+}
+section.company:nth-of-type(even) { /* 2番目 (沿革) */
+    background-color: #f8f9fa; /* 薄いグレー */
+}
+
+/* セクションタイトル (既存スタイル流用) */
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 0.5em;
+    color: #1a1a1a; /* タイトルの基本色 */
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #005f73; /* アクセントカラー */
+}
+
+/* --- 企業情報テーブル --- */
+.company-info {
+    max-width: 850px; /* テーブルの最大幅 */
+    margin: 0 auto 4rem auto; /* 下に少しマージンを追加 */
+    background-color: #ffffff;
+    padding: 0; /* テーブル内でパディングするため不要 */
+    border: 1px solid #dee2e6; /* テーブル全体に枠線 */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* 影を少し控えめに */
+    overflow: hidden; /* テーブルの角丸を反映させるため */
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse; /* セルの境界線を結合 */
+}
+
+.info-table th,
+.info-table td {
+    padding: 18px 25px; /* パディング調整 */
+    text-align: left;
+    border-bottom: 1px solid #e9ecef; /* 罫線の色を少し薄く */
+    vertical-align: top; /* 上揃え */
+    font-size: 1rem; /* フォントサイズ調整 */
+}
+
+.info-table th {
+    width: 30%; /* 見出し列の幅 */
+    font-weight: 700;
+    background-color: #f8f9fa; /* 見出し列の背景色 */
+    color: #495057; /* 見出しの色 */
+    font-family: 'Noto Sans JP', sans-serif; /* フォント指定 */
+}
+
+.info-table td {
+    color: #333;
+    line-height: 1.7;
+}
+
+/* 最後の行の下罫線は削除 */
+.info-table tr:last-child th,
+.info-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* --- 沿革タイムライン --- */
+/* タイムライン前の説明文 */
+.company p[style*="text-align: center"] {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+.timeline {
+    position: relative;
+    max-width: 700px; /* タイムラインの幅 */
+    margin: 50px auto 0 auto; /* 上マージン調整 */
+    padding: 0 10px; /* 左右のpadding */
+}
+
+/* タイムライン中央の縦線 */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* 少し下から開始 */
+    left: 8px; /* 左寄せ線の位置 */
+    height: calc(100% - 10px); /* マーカー下までの高さ */
+    width: 3px;
+    background-color: #ced4da; /* 線の色 */
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px; /* アイテム間のスペース */
+    padding-left: 45px; /* 縦線からの距離 */
+}
+/* 最後のアイテムの下マージンは不要 */
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* タイムラインのマーカー（ドット） */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 5px; /* 年号との垂直位置調整 */
+    /* left: 縦線中心 + 縦線幅/2 - マーカー幅/2 */
+    left: calc(8px + 3px / 2 - 16px / 2); /* 線の中心に合わせる */
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff; /* マーカー背景 */
+    border: 3px solid #005f73; /* アクセントカラーの枠線 */
+    border-radius: 50%;
+    z-index: 1; /* 線より手前 */
+    box-shadow: 0 0 0 3px #ffffff; /* マーカー周りの背景を抜く */
+}
+
+.timeline-content {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    position: relative;
+}
+
+.timeline-content h3 { /* 年号 */
+    font-family: 'Zen Old Mincho', serif;
+    font-size: 1.6rem;
+    margin: 0 0 0.8rem 0; /* 上マージン削除 */
+    color: #005f73; /* アクセントカラー */
+    font-weight: 700;
+}
+
+.timeline-content p { /* 説明文 */
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* --- Footer --- */
+/* フッターは既存の style.css のスタイルが適用される想定 */
+
+
+/* --- Responsive Adjustments for Company Page --- */
+@media (max-width: 992px) {
+    .info-table th {
+        width: 35%; /* 少し広げる */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    /* 企業情報テーブルをレスポンシブ対応 */
+    .company-info {
+        border: none; /* 枠線削除 */
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+    }
+    .info-table thead, .info-table tbody, .info-table th, .info-table td, .info-table tr {
+        display: block; /* テーブル要素をブロック要素に */
+    }
+    .info-table tr {
+        margin-bottom: 1.5rem; /* 各項目間のスペース */
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        overflow: hidden; /* 角丸を反映 */
+        background-color: #ffffff; /* 各項目に背景色 */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .info-table th {
+        width: 100%;
+        background-color: #f8f9fa; /* 見出し背景 */
+        border-bottom: 1px solid #e9ecef; /* 見出しと内容の区切り線 */
+        padding: 12px 15px;
+        text-align: center; /* 中央寄せ */
+    }
+    .info-table td {
+        width: 100%;
+        padding: 15px;
+        border-bottom: none; /* td の下の線は不要 */
+        text-align: center; /* 中央寄せ */
+    }
+     .info-table tr:last-child {
+        margin-bottom: 0; /* 最後の項目の下マージン削除 */
+    }
+
+    /* Timeline調整 */
+    .timeline {
+        max-width: none; /* 幅制限解除 */
+        padding: 0 5px; /* 左右padding */
+    }
+    .timeline::before {
+        left: 10px; /* 線の位置 */
+    }
+    .timeline-item {
+        padding-left: 40px; /* アイテムの左padding */
+    }
+    .timeline-item::before {
+        left: calc(10px + 3px / 2 - 16px / 2); /* マーカー位置 */
+    }
+    .timeline-content {
+        padding: 20px 25px;
+    }
+    .timeline-content h3 {
+        font-size: 1.4rem;
+    }
+
+    section.request h2 {
+        font-size: 1.6rem;
+    }
+    section.request p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+     .hero { padding: 80px 0; }
+     .hero-content h2 { font-size: 2rem; }
+     .hero-content p { font-size: 1rem; }
+     .section-title { font-size: 1.8rem; }
+}
+
+
+
+
+/* --- Contact Section --- */
+.contact-section {
+    padding: 80px 0;
+    background-color: #ffffff; /* セクション背景色 */
+}
+
+/* フォーム導入文 */
+.contact-intro {
+    text-align: center;
+    margin-bottom: 4rem; /* フォームとの間隔 */
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 左右カラムコンテナ */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap; /* レスポンシブ対応 */
+    gap: 40px; /* カラム間の隙間 */
+    align-items: flex-start; /* 上揃え */
+}
+
+/* 左カラム: 問い合わせ先情報 */
+.contact-info {
+    flex: 1; /* 幅を均等に分ける (フォーム側もflex: 1 or 2) */
+    min-width: 300px; /* 最低幅 */
+    background-color: #f8f9fa; /* 背景色を薄いグレーに */
+    padding: 35px 30px;
+    border-radius: 8px;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #005f73;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+}
+.contact-info h3.hours-title {
+    margin-top: 2.5rem; /* 営業時間見出しの上のスペース */
+}
+
+.contact-info p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem; /* 各説明文の下マージン */
+}
+.contact-info .info-item p {
+     margin-bottom: 0; /* アイテム内のpタグのマージンはリセット */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start; /* アイコンとテキストを上揃え */
+    margin-bottom: 1.5rem; /* 各情報アイテム間のスペース */
+}
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-icon {
+    font-size: 1.4rem; /* アイコンサイズ */
+    color: #005f73;   /* アイコン色 */
+    margin-right: 15px; /* アイコンとテキストの間隔 */
+    margin-top: 3px; /* テキストとの垂直位置微調整 */
+    width: 25px; /* 幅固定でテキスト揃え */
+    text-align: center;
+}
+
+.info-text strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+    color: #333;
+}
+.info-text p {
+    color: #495057;
+    line-height: 1.6;
+}
+.info-text a.link-underline {
+    color: #005f73;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+.info-text a.link-underline:hover {
+    color: #0a9396;
+}
+
+
+/* 右カラム: フォーム */
+.contact-form {
+    flex: 1.5; /* フォーム側を少し広く取る場合 */
+    min-width: 300px;
+}
+
+/* Google Form iframe ラッパー */
+.google-form-wrapper {
+    position: relative;
+    padding-bottom: 133%; /* Google Form の高さ/幅比率 (約852/640) */
+    /* padding-bottom: 120%; */ /* 高さを調整する場合 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #dee2e6;
+}
+
+.google-form-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* CSSで枠線を制御 */
+}
+
+
+/* --- Access Map Section --- */
+.access-map {
+    padding: 80px 0;
+    background-color: #f8f9fa; /* 背景色を交互に */
+}
+
+.map-container {
+    position: relative;
+    padding-bottom: 50%; /* 地図のアスペクト比 (高さ / 幅) */
+    /* 例: 16:9 -> 56.25%, 4:3 -> 75% */
+    /* 600x450 -> 450/600 = 75% だったが、横幅いっぱいに広げるなら50%程度で良いかも */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #dee2e6;
+    margin-bottom: 2rem; /* マップと補足テキストの間隔 */
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.access-notes {
+    text-align: center;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+.access-notes i.icon-left {
+    margin-right: 0.5em;
+    color: #005f73;
+}
+
+
+/* --- Responsive Adjustments for Contact Page --- */
+@media (max-width: 768px) {
+    .contact-container {
+        gap: 30px; /* 隙間を狭く */
+    }
+    .contact-info {
+        flex-basis: 100%; /* 縦積みに */
+        min-width: auto;
+        padding: 30px 25px;
+    }
+    .contact-form {
+        flex-basis: 100%; /* 縦積みに */
+        min-width: auto;
+    }
+    .google-form-wrapper {
+        padding-bottom: 150%; /* スマホでは高さを多めに取る */
+    }
+    .map-container {
+        padding-bottom: 75%; /* スマホでは高さを多めに */
+    }
+    .access-notes {
+        text-align: left; /* 左寄せに */
+        font-size: 0.95rem;
+    }
+}
+
+
+/* ============================================= */
+/* style.css に追記・修正する内容 (Facility Page) */
+/* ============================================= */
+
+/* --- Hero Section (Facility Page) --- */
+.hero {
+    background: linear-gradient(135deg, #e0fbfc 0%, #ffffff 70%);
+}
+/* 他ページと同様のスタイルが適用される想定 */
+.hero-content { text-align: center; max-width: 700px; margin: 0 auto; animation: fadeIn 1s ease-out; }
+.hero-content h2 { font-size: 2.8rem; margin-bottom: 0.8rem; color: #1a1a1a; }
+.hero-content h2 .accent { color: #005f73; }
+.hero-content p { font-size: 1.1rem; color: #495057; margin-bottom: 0; }
+
+
+/* --- Printers Section --- */
+.printers {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.printer-grid {
+    display: grid;
+    /* 1列表示から始め、画面幅に応じて列数を増やす */
+    grid-template-columns: 1fr;
+    gap: 50px; /* カード間の隙間 */
+}
+
+/* 中サイズ画面 (例: 768px以上) で2列 */
+@media (min-width: 768px) {
+    .printer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+/* 大サイズ画面 (例: 1024px以上) で N列 (今回は2列のまま) */
+/* @media (min-width: 1024px) {
+    .printer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+} */
+
+
+/* --- Feature Card (機械カード) --- */
+.feature-card-facility  {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 25px rgba(0, 95, 115, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9ecef;
+    /* ホバーエフェクトのための transition を追加 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* カード全体へのホバーエフェクト (index.html と同様のものを想定) */
+.feature-card-facility:hover {
+    transform: translateY(-6px); /* 少し上に浮き上がる */
+    box-shadow: 0 12px 30px rgba(0, 95, 115, 0.16); /* 影をより強調 */
+}
+
+.feature-card-facility h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    background-color: #005f73;
+    padding: 18px 25px;
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+}
+
+
+.machine-details-container {
+    padding: 25px;
+    display: flex;
+    /* === 変更点: 常に縦積みに === */
+    flex-direction: column;
+    gap: 20px; /* 画像と説明文の間の基本的な隙間 */
+    flex-grow: 1;
+}
+.main-printer-image {
+    display: block;
+    width: 100%; /* 親コンテナ(main-image-container)の幅に合わせる */
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.main-printer-image:hover {
+     /* ホバー時の拡大効果は少し控えめに */
+     transform: scale(1.02);
+}
+
+.description-area {
+    /* === 変更点: flex比率設定は不要に === */
+    width: 100%; /* コンテナ幅を100%に */
+    min-width: 0;
+    color: #495057;
+}
+
+
+.description-area .machine-summary {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+/* --- Machine Specs Table --- */
+.machine-specs {
+    margin-top: 25px; /* スペック表の上の余白 */
+    padding-top: 15px; /* 必要なら上に境界線などを引く場合の余白 */
+    border-top: 1px solid #dee2e6; /* 上に薄い境界線を追加 */
+}
+
+.machine-specs dl {
+    margin: 0;
+    padding: 0;
+    display: grid;                     /* Grid Layout を有効化 */
+    grid-template-columns: auto 1fr;   /* 1列目(項目名):自動幅, 2列目(値):残り全部 */
+    gap: 10px 15px;                    /* 行間の隙間 10px, 列間の隙間 15px */
+    align-items: center;               /* ★★★ 縦方向を中央揃え（これで高さが揃います）*/
+                                       /* 上揃えにしたい場合は align-items: start; */
+}
+
+.machine-specs dt { /* 項目名 (メーカー、機種名など) */
+    font-weight: 600;                  /* 少し太字に */
+    color: #343a40;                    /* 項目名の文字色 */
+    grid-column: 1;                    /* Gridの1列目に配置 */
+    padding: 4px 0;                    /* 上下の内部余白 */
+    line-height: 1.5;                  /* 行の高さを調整 */
+}
+
+.machine-specs dd { /* 値 (KOMORI、LITHRONE G40など) */
+    margin: 0;                         /* dd要素のデフォルトマージンをリセット */
+    color: #495057;                    /* 値の文字色 */
+    grid-column: 2;                    /* Gridの2列目に配置 */
+    padding: 4px 0;                    /* 上下の内部余白 */
+    line-height: 1.5;                  /* 行の高さを調整 */
+    word-break: break-word;            /* 長いテキストがはみ出ないように折り返す */
+}
+
+/* --- Thumbnail Carousel --- */
+.thumbnail-carousel-container {
+    padding: 0 25px 25px 25px; /* 下と左右にパディング */
+    margin-top: 20px;
+    /* border-top: 1px solid #e9ecef;
+    
+    padding-top: 20px; */
+}
+
+.thumbnail-swiper {
+    /* Swiperコンテナ自体のスタイルは最小限に */
+    /* 必要であれば幅やマージンを指定 */
+    width: 100%;
+    height: auto; /* 高さは内容に合わせる */
+}
+
+.thumbnail-swiper .swiper-slide {
+    width: 80px; /* サムネイルの幅 */
+    height: 60px; /* サムネイルの高さ */
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #dee2e6;
+}
+.thumbnail-swiper .swiper-slide:hover {
+     opacity: 1;
+     transform: scale(1.05);
+     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.thumbnail-swiper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* アスペクト比を維持してトリミング */
+}
+.thumbnail-swiper .swiper-slide img.active { /* JSで付与されるクラス */
+    opacity: 1;
+    border: 2px solid #005f73; /* アクティブなサムネイルの枠線 */
+    box-shadow: 0 0 8px rgba(0, 95, 115, 0.3);
+}
+
+/* --- View Larger Text --- */
+.view-larger-text {
+    text-align: right;
+    margin: -10px 25px 20px 0; /* 位置調整 */
+    font-size: 0.9rem;
+    color: #005f73;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.view-larger-text:hover {
+    color: #0a9396;
+    text-decoration: underline;
+}
+.view-larger-text .icon-right {
+    margin-left: 0.4em;
+    font-size: 0.8em; /* アイコンサイズ調整 */
+}
+
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    animation: fadeInModal 0.3s ease-out; /* Fade in animation */
+}
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content-wrapper {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 90%; /* Responsive width */
+    max-width: 900px; /* Max width */
+    background-color: #1a1a1a; /* Dark background for modal content */
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal .close-button {
+    position: absolute;
+    top: -10px; /* Position slightly outside */
+    right: -10px;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.modal .close-button:hover,
+.modal .close-button:focus {
+    background-color: #cc0000;
+    text-decoration: none;
+     transform: rotate(90deg);
+}
+
+/* Modal Swiper Styles */
+.modal-swiper {
+    width: 100%;
+    /* max-height: 80vh; */ /* Limit height if needed */
+    margin: 0 auto; /* Center swiper */
+}
+.modal-swiper .swiper-slide {
+    text-align: center; /* Center image in slide */
+    background: #1a1a1a;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center;
+    align-items: center;
+}
+.modal-swiper .swiper-slide img {
+    max-width: 100%;
+    max-height: 75vh; /* Limit image height */
+    height: auto;
+    width: auto; /* Let width adjust based on height */
+    object-fit: contain; /* Ensure whole image is visible */
+}
+
+/* Modal Swiper Navigation/Pagination Colors */
+.modal-swiper .swiper-button-prev,
+.modal-swiper .swiper-button-next {
+    color: #ffffff; /* White arrows */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    width: 44px; /* Swiper default */
+    height: 44px; /* Swiper default */
+    transition: background-color 0.3s ease;
+}
+.modal-swiper .swiper-button-prev:hover,
+.modal-swiper .swiper-button-next:hover {
+     background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-swiper .swiper-button-prev::after,
+.modal-swiper .swiper-button-next::after {
+    font-size: 1.2rem; /* Adjust arrow size */
+}
+
+.modal-swiper .swiper-pagination-bullet {
+    background-color: #aaa; /* Inactive bullet color */
+    opacity: 0.7;
+}
+.modal-swiper .swiper-pagination-bullet-active {
+    background-color: #ffffff; /* Active bullet color */
+    opacity: 1;
+}
+
+#caption {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+    font-size: 0.9rem;
+    min-height: 1.2em; /* Prevent layout shift */
+}
+
+
+/* --- Facility List Section --- */
+.facility-list {
+    padding: 80px 0;
+    background-color: #f8f9fa; /* Alternate background */
+}
+.facility-list-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Re-use or adapt company.html's table style */
+.facility-summary-table {
+    width: 100%;
+    max-width: 900px; /* Limit table width */
+    margin: 0 auto; /* Center table */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* For border-radius */
+}
+.facility-summary-table th,
+.facility-summary-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.95rem;
+}
+.facility-summary-table th {
+    background-color: #f8f9fa;
+    font-weight: 700;
+    color: #495057;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.facility-summary-table tr:last-child td {
+    border-bottom: none;
+}
+/* Add responsive handling for table if needed (e.g., stacking on small screens) */
+
+
+.facility-list-outro {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- CTA Section --- */
+.cta { /* Re-use styles from other pages */
+    text-align: center;
+    padding: 70px 0;
+    background-color: #005f73;
+    color: #ffffff;
+}
+.cta h2 { color: #ffffff; font-size: 1.8rem; margin-bottom: 1rem; font-family: 'Zen Old Mincho', serif; font-weight: 700; line-height: 1.5; max-width: 750px; margin-left: auto; margin-right: auto; }
+.cta p { margin-bottom: 2.5rem; font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto; }
+.cta .btn.btn-primary { display: inline-block; padding: 14px 35px; border-radius: 5px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; cursor: pointer; border: 2px solid #ffffff; background-color: #ffffff; color: #005f73; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+.cta .btn.btn-primary:hover { background-color: #f0f0f0; color: #005f73; border-color: #f0f0f0; transform: translateY(-3px); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15); }
+.cta .btn .icon-right { margin-left: 8px; font-size: 0.9em; }
+
+
+/* --- Responsive Adjustments for Facility Page --- */
+@media (max-width: 768px) {
+    .hero-content h2 { font-size: 2.2rem; }
+    .printer-grid { gap: 15px; }
+    .feature-card h3 { font-size: 1.2rem; padding: 15px 20px; }
+    .machine-details-container { padding: 20px; }
+    .description-area .machine-summary { font-size: 0.95rem; }
+    .machine-specs { font-size: 0.85rem; }
+    .machine-specs dt { width: 90px; }
+    .machine-specs dd { margin-left: 100px; }
+    .thumbnail-carousel-container { padding: 0 20px 20px 20px; }
+    .thumbnail-swiper .swiper-slide { width: 70px; height: 52px; } /* Adjust thumbnail size */
+    .view-larger-text { margin-right: 20px; margin-bottom: 15px; }
+
+     /* Responsive Table (Example: Stacked) */
+     .facility-summary-table thead { border: none; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+     .facility-summary-table tr { border-bottom: 3px solid #f8f9fa; display: block; margin-bottom: .625em; background: #fff; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+     .facility-summary-table td { border-bottom: 1px solid #e9ecef; display: block; font-size: .8em; text-align: right; padding: 10px 15px; }
+     .facility-summary-table td::before { content: attr(data-label); float: left; font-weight: bold; text-transform: uppercase; color: #005f73; margin-right: 10px; }
+     .facility-summary-table td:last-child { border-bottom: 0; }
+     /* Add data-label attributes to td elements in HTML for this to work */
+     /* Example: <td data-label="メーカー">小森コーポレーション</td> */
+
+     .facility-list-intro, .facility-list-outro { font-size: 1rem; }
+
+     .modal-content-wrapper { width: 95%; padding: 15px; }
+     .modal-swiper .swiper-slide img { max-height: 70vh; }
+     .modal .close-button { top: -5px; right: -5px; width: 30px; height: 30px; font-size: 24px; }
+
+}
+@media (max-width: 480px) {
+    .hero { padding: 80px 0; }
+    .hero-content h2 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .machine-details-container { flex-direction: column; } /* Force column layout */
+    .machine-specs dt { float: none; width: auto; margin-bottom: 0.2em; }
+    .machine-specs dd { margin-left: 0; margin-bottom: 0.8em; }
+}
